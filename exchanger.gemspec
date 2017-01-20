@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.rubygems_version = "1.3.6"
 
-  s.add_runtime_dependency "activesupport", [">= 2.2.2"]
+  s.add_runtime_dependency "activesupport", [">= 2.1.9"]
   s.add_runtime_dependency "nokogiri", [">= 1.3.0"]
   s.add_runtime_dependency "httpclient", [">= 2.1.5.2"]
   s.add_runtime_dependency "rubyntlm", [">= 0.1.1"]
