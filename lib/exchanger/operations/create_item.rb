@@ -12,7 +12,7 @@ module Exchanger
   class CreateItem < Operation
     class Request < Operation::Request
       attr_accessor :folder_id, :email_address, :items,
-        :send_meeting_invitations
+        :send_meeting_invitations, :message_disposition
 
       # Reset request options to defaults.
       def reset
@@ -58,6 +58,7 @@ module Exchanger
         def create_item_attributes
           create_item_attributes = { "xmlns" => NS["m"] }
           create_item_attributes["SendMeetingInvitations"] = send_meeting_invitations if send_meeting_invitations
+          create_item_attributes["MessageDisposition"] = message_disposition || "SaveOnly"
           create_item_attributes
         end
     end
