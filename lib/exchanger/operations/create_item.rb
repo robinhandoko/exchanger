@@ -50,11 +50,11 @@ module Exchanger
                 end
               end
 
-              xml.send("ConvertId", "DestinationFormat" => "EwsLegacyId",
+              xml.send("ConvertId", "DestinationFormat" => "EwsId",
                 "xmlns" =>"http://schemas.microsoft.com/exchange/services/2006/messages",
                 "xmlns:t" => "http://schemas.microsoft.com/exchange/services/2006/types").remove_namespaces! do
                 xml.SourceIds do
-                  xml.send("t:AlternateId", "Id" => "#{folder_id}", "Format" => "EwsLegacyId")
+                  xml.send("t:AlternateId", "Id" => folder_id, "Format" => "EwsLegacyId")
                 end
               end
             end
