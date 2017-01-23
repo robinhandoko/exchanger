@@ -22,6 +22,7 @@ module Exchanger
       end
 
       def to_xml
+        puts "=====Build XML========="
         Nokogiri::XML::Builder.new do |xml|
           xml.send("soap:Envelope", "xmlns:soap" => NS["soap"], "xmlns:t" => NS["t"], "xmlns:xsi" => NS["xsi"], "xmlns:xsd" => NS["xsd"]) do
             xml.send("soap:Body") do
