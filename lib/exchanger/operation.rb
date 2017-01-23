@@ -3,7 +3,7 @@ module Exchanger
   #
   # Exchange Web Services provides many operations that enable you to access
   # information from the Exchanger store.
-  # 
+  #
   # http://msdn.microsoft.com/en-us/library/bb409286.aspx
   class Operation
     attr_reader :options, :request, :response
@@ -50,6 +50,7 @@ module Exchanger
       end
 
       def body
+        puts "#{to_xml.to_xml}"
         to_xml.to_xml
       end
 
