@@ -29,7 +29,7 @@ module Exchanger
                 "xmlns" =>"http://schemas.microsoft.com/exchange/services/2006/messages",
                 "xmlns:t" => "http://schemas.microsoft.com/exchange/services/2006/types") do
                 xml.SourceIds do
-                  xml.send("t:AlternateId", "Id" => "AAMkAGE1YTU3MjkyLWFmMjItNGYyZC05Y2ZiLTIwMWY4MjJhMTVlNAAuAAAAAAChtMCk52J3RLzcG5WcyzUkAQCsm0+9jDPcQakVSrf3fxOXAAAg8kzzAAA=", "Format" => "EwsId")
+                  xml.send("t:AlternateId", "Id" => folder_id.to_s, "Format" => "EwsId", "Mailbox" => email_address)
                 end
               end
 
