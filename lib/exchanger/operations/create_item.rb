@@ -26,10 +26,9 @@ module Exchanger
         Nokogiri::XML::Builder.new do |xml|
           xml.send("soap:Envelope", "xmlns:soap" => NS["soap"], "xmlns:t" => NS["t"], "xmlns:xsi" => NS["xsi"], "xmlns:xsd" => NS["xsd"]) do
             xml.send("soap:Body") do
-              xml.ConvertId({ "DestinationFormat": "EwsLegacyId"}) do
+              xml.ConvertId(convert_id_attributes) do
                 xml.SourceIds do
-                  puts "=====#{folder_id}====="
-                  xml.AlternateId({ "Id": folder_id, Format: "EwsLegacyId"})
+                  xml.AlternateId(alternate_attributes(folder_id))
                 end
               end
 
@@ -70,6 +69,23 @@ module Exchanger
           create_item_attributes["SendMeetingInvitations"] = send_meeting_invitations if send_meeting_invitations
           create_item_attributes["MessageDisposition"] = message_disposition || "SaveOnly"
           create_item_attributes
+        end
+
+        def convert_id_attributes
+          convert_id_attributes = {
+            "DestinationFormat" => "EwsLegacyId"
+          }
+
+          convert_id_attributes
+        end
+
+        def alternate_attributes(folder_id)
+          alternate_attributes = {
+            "Id" => folder_id,
+            "Format" => "EwsLegacyId"
+          }
+
+          alternate_attributes
         end
     end
 
