@@ -28,9 +28,11 @@ module Exchanger
             xml.send("soap:Body") do
               xml.ConvertId({ "DestinationFormat": "EwsLegacyId"}) do
                 xml.SourceIds do
+                  puts "=====#{folder_id}====="
                   xml.AlternateId({ "Id": folder_id, Format: "EwsLegacyId"})
                 end
               end
+
               xml.CreateItem(create_item_attributes) do
                 xml.SavedItemFolderId do
                   if folder_id.is_a?(Symbol)
@@ -45,6 +47,7 @@ module Exchanger
                     xml.send("t:FolderId", "Id" => folder_id)
                   end
                 end
+
                 xml.Items do
                   items.each do |item|
                     item_xml = item.to_xml
