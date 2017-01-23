@@ -55,7 +55,7 @@ module Exchanger
               end
 
               xml.send("ConvertId DestinationFormat='EwsLegacyId'") do
-                xml.send("SourceIds") do
+                xml.SourceIds do
                   xml.send("t:AlternateId Id='#{folder_id}' Format='EwsLegacyId'")
                 end
               end
