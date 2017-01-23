@@ -25,6 +25,14 @@ module Exchanger
         Nokogiri::XML::Builder.new do |xml|
           xml.send("soap:Envelope", "xmlns:soap" => NS["soap"], "xmlns:t" => NS["t"], "xmlns:xsi" => NS["xsi"], "xmlns:xsd" => NS["xsd"]) do
             xml.send("soap:Body") do
+              xml.send("ConvertId", "DestinationFormat" => "EwsLegacyId",
+                "xmlns" =>"http://schemas.microsoft.com/exchange/services/2006/messages",
+                "xmlns:t" => "http://schemas.microsoft.com/exchange/services/2006/types") do
+                xml.SourceIds do
+                  xml.send("t:AlternateId", "Id" => "AAMkAGE1YTU3MjkyLWFmMjItNGYyZC05Y2ZiLTIwMWY4MjJhMTVlNAAuAAAAAAChtMCk52J3RLzcG5WcyzUkAQCsm0+9jDPcQakVSrf3fxOXAAAg8kzzAAA=", "Format" => "EwsId")
+                end
+              end
+
               xml.CreateItem(create_item_attributes) do
                 xml.SavedItemFolderId do
                   if folder_id.is_a?(Symbol)
@@ -47,14 +55,6 @@ module Exchanger
                     item_xml.namespace = item_xml.namespace_definitions[0]
                     xml << item_xml.to_s
                   end
-                end
-              end
-
-              xml.send("ConvertId", "DestinationFormat" => "EwsLegacyId",
-                "xmlns" =>"http://schemas.microsoft.com/exchange/services/2006/messages",
-                "xmlns:t" => "http://schemas.microsoft.com/exchange/services/2006/types").remove_namespaces! do
-                xml.SourceIds do
-                  xml.send("t:AlternateId", "Id" => folder_id, "Format" => "EwsId")
                 end
               end
             end
