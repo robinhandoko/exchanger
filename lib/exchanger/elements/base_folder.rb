@@ -37,11 +37,6 @@ module Exchanger
       response.folders
     end
 
-    def self.find_by_folder_name(name, email_address)
-      response = FindFolder.run(:parent_folder_id => parent_id, :folder_name => name, :email_address => email_address)
-      response.folders
-    end
-
     attr_writer :parent_folder
 
     def parent_folder

@@ -36,15 +36,6 @@ module Exchanger
                     xml.send("t:FolderId", "Id" => parent_folder_id)
                   end
                 end
-
-                if folder_name != nil
-                  xml.send("m:Restriction") do
-                    xml.send("t:IsEqualTo") do
-                      xml.send("FieldURI", "FieldURI" => "folder:DisplayName")
-                      xml.send("FieldURIOrConstant", "Constant" => folder_name)
-                    end
-                  end
-                end
               end
             end
           end
