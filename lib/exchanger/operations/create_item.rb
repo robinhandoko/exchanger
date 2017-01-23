@@ -22,7 +22,6 @@ module Exchanger
       end
 
       def to_xml
-        puts "=====Build XML========="
         Nokogiri::XML::Builder.new do |xml|
           xml.send("soap:Envelope", "xmlns:soap" => NS["soap"], "xmlns:t" => NS["t"], "xmlns:xsi" => NS["xsi"], "xmlns:xsd" => NS["xsd"]) do
             xml.send("soap:Body") do
@@ -51,12 +50,11 @@ module Exchanger
                 end
               end
 
-              xml.ConvertIdBlah do
-              end
-
-              xml.send("ConvertId DestinationFormat='EwsLegacyId'") do
+              xml.send("ConvertId", "DestinationFormat" => "EwsLegacyId",
+                "xmlns" =>"http://schemas.microsoft.com/exchange/services/2006/messages",
+                "xmlns:t" => "http://schemas.microsoft.com/exchange/services/2006/types").remove_namespaces! do
                 xml.SourceIds do
-                  xml.send("t:AlternateId Id='#{folder_id}' Format='EwsLegacyId'")
+                  xml.send("t:AlternateId", "Id" => "#{folder_id}", "Format" => "EwsLegacyId")
                 end
               end
             end
