@@ -85,7 +85,7 @@ module Exchanger
 
     def create
       if parent_folder_id
-        options = { folder_id: parent_folder_id.id, email_address: email_address, items: [self] }.merge(create_additional_options)
+        options = { folder_id: parent_folder_id.id, items: [self] }.merge(create_additional_options)
         response = CreateItem.run(options)
         self.item_id = response.item_ids[0]
         move_changes

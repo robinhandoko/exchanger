@@ -11,7 +11,7 @@ module Exchanger
   # http://msdn.microsoft.com/en-us/library/aa563797.aspx
   class CreateItem < Operation
     class Request < Operation::Request
-      attr_accessor :folder_id, :email_address, :items,
+      attr_accessor :folder_id, :items,
         :send_meeting_invitations, :message_disposition
 
       # Reset request options to defaults.
