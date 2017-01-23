@@ -1,11 +1,11 @@
 module Exchanger
-  # The FindFolder operation uses Exchanger Web Services to find subfolders of 
+  # The FindFolder operation uses Exchanger Web Services to find subfolders of
   # an identified folder and returns a set of properties that describe the set of subfolders.
   #
   # http://msdn.microsoft.com/en-us/library/aa563918.aspx
   class FindFolder < Operation
     class Request < Operation::Request
-      attr_accessor :parent_folder_id, :base_shape, :email_address, :traversal
+      attr_accessor :parent_folder_id, :base_shape, :email_address, :traversal, :folder_name
 
       # Reset request options to defaults.
       def reset
@@ -34,6 +34,15 @@ module Exchanger
                     end
                   else
                     xml.send("t:FolderId", "Id" => parent_folder_id)
+                  end
+                end
+
+                if folder_name != nil
+                  xml.send("m:Restriction") do
+                    xml.send("t:IsEqualTo") do
+                      xml.send("FieldURI", "FieldURI" => "folder:DisplayName")
+                      xml.send("FieldURIOrConstant", "Constant" => folder_name)
+                    end
                   end
                 end
               end

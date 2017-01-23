@@ -50,7 +50,6 @@ module Exchanger
       end
 
       def body
-        puts "#{to_xml.to_xml}"
         to_xml.to_xml
       end
 

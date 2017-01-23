@@ -65,7 +65,6 @@ module Exchanger
       private
 
         def create_item_attributes
-          puts "Add extra attributes create item"
           create_item_attributes = { "xmlns" => NS["m"] }
           create_item_attributes["SendMeetingInvitations"] = send_meeting_invitations if send_meeting_invitations
           create_item_attributes["MessageDisposition"] = message_disposition || "SaveOnly"
